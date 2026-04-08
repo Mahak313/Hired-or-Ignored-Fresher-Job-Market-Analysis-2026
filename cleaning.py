@@ -50,7 +50,7 @@ print("✅ New file save hui: jobs_data_roles.csv")
 # ============================================
 # SURVEY DATA CLEANING
 # ============================================
-# Step 1 - CHNAGE COLUMN NAMES 
+# Step 1 - CHANGE COLUMN NAMES 
 # ============================================
 survey.columns = [
     'Timestamp',
