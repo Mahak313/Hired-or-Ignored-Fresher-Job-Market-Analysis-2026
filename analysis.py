@@ -37,9 +37,6 @@ print("percentage of freshers who got an interview:",interview_percentage.round(
 
 # ============================================
 # ANALYSIS 2 - JOB SEARCH DURATION
-# Sawaal: Kitne months se freshers search kar rahe hain?
-# Job_Search_Duration column mein data hai
-# value_counts = har duration kitni baar aaya
 # ============================================
 
 duration_counts=survey['Job_Search_Duration'].value_counts()
@@ -58,11 +55,7 @@ print(duration_percent.round(2))
 
 # ============================================
 # ANALYSIS 3 - PLATFORMS USED
-# Sawaal: Kaunsa platform sabse zyada use hota hai?
-# Platforms_Used column mein comma separated values hain
-# str.split(',') = comma pe split karta hai
-# .explode() = ek row ko multiple rows mein tod deta hai
-# str.strip() = extra spaces hatata hai
+
 # ============================================
 all_platforms=survey['Platforms_Used'].str.split(',').explode().str.strip()
 
@@ -75,17 +68,12 @@ print("="*50)
 print("Most used platforms for job search:",platform_counts)
 print("Percentage of freshers using each platform:",platform_percent.round(2))
 #Insight 🎯
-
 #"LinkedIn sabse popular platform hai — 28% freshers use karte hain — followed by Naukri at 22.86%"
 
 
 
 # ============================================
 # ANALYSIS 4 - RESUME REVIEW IMPACT
-# Sawaal: Resume review se interview milta hai?
-# groupby = ek column ke basis pe group karta hai
-# Resume_Reviewed column = Yes/No/Unknown
-# Interview_Calls column = kitne interview aaye
 # ============================================
 
 print("="*50)
@@ -108,12 +96,7 @@ print(resume_percent.round(2))
 
 # ============================================
 # ANALYSIS 5 - MARKET SKILLS DEMAND
-# Sawaal: Jobs mein kaunsi skills maangi ja rahi hain?
-# Skills column mein semicolon separated values hain
-# str.split(';') = semicolon pe split karta hai
-# .explode() = ek row ko multiple rows mein tod deta hai
-# str.strip() = extra spaces hatata hai
-# .head(15) = sirf top 15 skills dikhao
+
 # ============================================
 
 
@@ -121,29 +104,21 @@ print("="*50)
 print("ANALYSIS 5 - MARKET SKILLS DEMAND")
 print("="*50)
 
-# Step 1 - Pehle dekho Skills column kaisi hai
 print("Skills column sample:")
 print(jobs['Skills'].head(3))
 
-# Step 2 - Har skill ko alag karo
-# Pehle semicolon pe split karo
 skills_split = []
 
-# Har row ke liye loop chalao
 for skill_row in jobs['Skills']:
-    # Semicolon pe split karo
     individual_skills = str(skill_row).split(';')
-    # Har skill clean karo
     for skill in individual_skills:
         clean_skill = skill.strip().lower()
         if clean_skill != '' and clean_skill != 'nan':
             skills_split.append(clean_skill)
 
-# Step 3 - List ko pandas series banao
 import pandas as pd
 skills_series = pd.Series(skills_split)
 
-# Step 4 - Count karo
 job_skills_count = skills_series.value_counts().head(15)
 
 print("\nTop 15 Skills Market Demand:")
@@ -156,9 +131,7 @@ print(job_skills_count)
 
 # ============================================
 # ANALYSIS 6 - FRESHER SKILLS
-# Sawaal: Freshers ke paas kaunsi skills hain?
-# Survey data mein Skills column comma 
-# separated hai
+
 # ============================================
 
 print("="*50)
